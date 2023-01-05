@@ -16,13 +16,13 @@ YELLOW = (255,200,0)
 BLUE = (0, 50, 255)
 
 #variables for making a board.
-board_size = 19
+board_size = 15
 board = []
 
 #variables for size of image.
-pad = 40
-cell_size = 50
-piece_size = 40
+pad = 30
+cell_size = 40
+piece_size = 30
 
 board_width = cell_size * (board_size - 1) + pad * 2
 

@@ -3,7 +3,7 @@ from variable import *
 
 class Menu(object):
     def __init__(self, surface):
-        self.font = pygame.font.SysFont("nanumgothicbold", 20)
+        self.font = pygame.font.SysFont("nanumgothicbold", 30)
         self.surface = surface
         self.draw_menu()
 
