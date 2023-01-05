@@ -1,10 +1,3 @@
-"""
-a side project of game omok
-omok is a board game of which the player who makes 5 straight lines on the board wins.
-reference1 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dnpc7848&logNo=221503651970
-reference2 : https://github.com/yurokji/omok/tree/main/omok_2players
-"""
-
 import pygame
 from pygame import QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP
 
