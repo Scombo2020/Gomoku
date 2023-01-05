@@ -85,16 +85,26 @@ def draw_board(screen):
 
 def draw_dols_order(screen, bgn=0, end=len(history)):
     for i in range(bgn, end):
-        py = pad + history[i][0] * cell_size - piece_size //2
         px = pad + history[i][1] * cell_size - piece_size //2
+        py = pad + history[i][0] * cell_size - piece_size //2
         if history[i][2] == BLACK:
             screen.blit(img_go_black, (px,py))
             #text_surface = myfont.render(str(len(dols_order)), False, (255, 0, 0))
-            screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
+            #screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
         else:
             screen.blit(img_go_white, (px,py))
             #text_surface = myfont.render(str(len(dols_order)), False, (255, 0, 0))
-            screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
+            #screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
+
+def draw_order(screen, new_i, new_j):
+    px = pad + new_i * cell_size - piece_size //2
+    py = pad + new_j * cell_size - piece_size //2
+    #if history[i][2] == BLACK:
+    #    screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
+    #else:
+    screen.blit(myfont_piece.render(str(len(history)), False, (255, 0, 0)), (px + 15,py + 10))
+    
+
 
 #check if the click was valid in the board
 def checkValid(mouse_pos):
@@ -228,6 +238,8 @@ def main():
     is_down = False
     is_valid = False
     new_pos = (0,0)
+    i_new = -1
+    j_new = -1
 
     while playing:
         for e in pygame.event.get():
@@ -252,6 +264,9 @@ def main():
         SURFACE.fill(YELLOW)
         draw_board(SURFACE)
         draw_dols_order(SURFACE, 0, len(history))
+        if (i_new != -1 and j_new != -1):
+            draw_order(SURFACE, i_new, j_new)
+            print("common...")
         pygame.display.update()
         clock.tick(30)
 
