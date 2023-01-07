@@ -1,4 +1,4 @@
-import pygame 
+import pygame, sys
 from variable import *
 
 class Menu(object):
@@ -25,3 +25,7 @@ class Menu(object):
             rect.topleft = (left, top)
         self.surface.blit(surf, rect)
         return rect
+
+    def terminate(self):
+        pygame.quit()
+        sys.exit()
