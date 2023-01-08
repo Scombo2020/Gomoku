@@ -93,3 +93,31 @@ class Board(object):
             self.show_winner_msg(stone)
             return True
         return False
+
+    # make this function the one checks validality of the board.
+    # Then how does it add the image?
+    def checkValid(mouse_pos):
+        mx = mouse_pos[0] - pad
+        my = mouse_pos[1] - pad
+    
+        i_m = my / cell_size
+        j_m = mx / cell_size
+
+        i_ref = round(i_m)
+        j_ref = round(j_m)
+        if abs(i_m-i_ref) < 0.18 and abs(j_m-j_ref) < 0.18:
+            return True, int(i_ref), int(j_ref)
+        else:
+            return False, -1, -1
+
+
+    # adjust this function and connect to add the image
+    def draw_dols_order(self, screen, bgn=0, end=len(history)):
+        for i in range(bgn, end):
+            px = pad + history[i][1] * cell_size - piece_size //2
+            py = pad + history[i][0] * cell_size - piece_size //2
+            if history[i][2] == BLACK:
+                screen.blit(self.img_black_piece, (px,py))
+            else:
+                screen.blit(self.img_white_piece, (px,py))
+        
