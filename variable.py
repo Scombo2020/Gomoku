@@ -17,7 +17,6 @@ BLUE = (0, 50, 255)
 
 #variables for making a board.
 board_size = 15
-board = []
 
 #variables for size of image.
 pad = 30
@@ -29,6 +28,5 @@ board_width = cell_size * (board_size - 1) + pad * 2
 window_width = board_width + 300
 window_height = cell_size * (board_size - 1) + pad * 2
 
-history = []
 index = 1
 win = False
