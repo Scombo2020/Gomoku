@@ -96,7 +96,7 @@ class Board(object):
 
     # make this function the one checks validality of the board.
     # Then how does it add the image?
-    def checkValid(mouse_pos):
+    def checkValid(self, mouse_pos):
         mx = mouse_pos[0] - pad
         my = mouse_pos[1] - pad
     
