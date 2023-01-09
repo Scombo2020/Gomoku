@@ -3,6 +3,9 @@ from variable import *
 
 
 class Board(object):
+    
+    # Will be run once at the beginning of delcaration of the object.
+    # Set up attributes for initiating the game and run some necessary functions for getting more attributes for the same purpose.
     def __init__(self, surface):
         self.board = [[0 for i in range(board_size)] for j in range(board_size)]
         self.set_image_font()
@@ -10,6 +13,8 @@ class Board(object):
         self.pixel_coords = []
         self.set_coords()
 
+    # Will be run at the beginning of the game.
+    # Set up attributes 
     def init_game(self):
         self.turn  = BLACK_PIECE
         self.draw_board()
@@ -33,17 +38,18 @@ class Board(object):
     def draw_board(self):
         self.surface.blit(self.img_background, (0,0))
         for i in range(board_size):
-            py = pad + i * cell_size
-            px = pad + i * cell_size
-            #don't understand how this is still black color?
-            pygame.draw.line(self.surface, BLACK, (pad, py), (board_width-pad, py), 2)
-            pygame.draw.line(self.surface, BLACK, (px, pad), (px, window_height-pad), 2)
+
+            # will work as a starting and ending point of a pair of vertical and horizontal line.
+            coordinate = pad + i * cell_size 
+            
+            pygame.draw.line(self.surface, BLACK, (pad, coordinate), (board_width - pad, coordinate), 2)
+            pygame.draw.line(self.surface, BLACK, (coordinate, pad), (coordinate, window_height - pad), 2)
 
     def set_coords(self):
         for y in range(board_size):
             for x in range(board_size):
                 self.pixel_coords.append((x * cell_size + 25, y * cell_size + 25))
-        print(self.pixel_coords)
+        #print(self.pixel_coords)
 
     def get_coord(self, pos):
         for coord in self.pixel_coords:
@@ -96,20 +102,32 @@ class Board(object):
 
     # make this function the one checks validality of the board.
     # Then how does it add the image?
-    def checkValid(self, mouse_pos):
-        mx = mouse_pos[0] - pad
-        my = mouse_pos[1] - pad
-    
-        i_m = my / cell_size
-        j_m = mx / cell_size
+    def check_valid(self, mouse_pos):
+        print(mouse_pos)
 
-        i_ref = round(i_m)
-        j_ref = round(j_m)
-        if abs(i_m-i_ref) < 0.18 and abs(j_m-j_ref) < 0.18:
-            return True, int(i_ref), int(j_ref)
-        else:
+        # if clicked out of the board, return False 
+        if not pygame.Rect(0, 0, board_width, window_height).collidepoint(mouse_pos):
+            print("not on the board")
             return False, -1, -1
 
+        input_without_pad_y = mouse_pos[1] - pad # will work as i (vertical index) of the matrix
+        input_without_pad_x = mouse_pos[0] - pad # will work as j (horizontal index) of the matrix
+    
+        input_index_y = input_without_pad_y / cell_size # get i_index
+        input_index_x = input_without_pad_x / cell_size # get j_index
+
+        input_y_rounded = round(input_index_y) 
+        input_x_rounded = round(input_index_x)
+        
+        # prevent vague clicks 
+        if abs(input_index_y - input_y_rounded) < 0.2 and abs(input_index_x - input_x_rounded) < 0.2:
+            print(input_y_rounded, input_x_rounded)
+            #need to call drawing function?
+            #return True, int(input_y_rounded), int(input_x_rounded)
+            return self.draw_piece(self.surface, True, int(input_y_rounded), int(input_x_rounded))
+        else:
+            print("return -1")
+            return False, -1, -1
 
     # adjust this function and connect to add the image
     def draw_dols_order(self, screen, bgn=0, end=len(history)):
@@ -121,3 +139,10 @@ class Board(object):
             else:
                 screen.blit(self.img_white_piece, (px,py))
         
+    def draw_piece(self, screen, valid, i, j):
+
+        if valid:
+            print("I came here!")
+            coordinate_x = j * cell_size + pad
+            coordinate_y = i * cell_size + pad
+            screen.blit(self.img_black_piece, (coordinate_x,coordinate_y)) 

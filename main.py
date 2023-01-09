@@ -33,7 +33,8 @@ def run_game(surface, board, menu):
             if event.type == QUIT:
                 menu.terminate()
             elif event.type == MOUSEBUTTONUP:
-                if not board.check_board(event.pos):
+                #if not board.check_board(event.pos):
+                if not board.check_valid(event.pos):
                     if menu.check_rect(event.pos, board):
                         board.init_game()
 
