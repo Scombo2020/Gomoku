@@ -143,6 +143,8 @@ class Board(object):
 
         if valid:
             print("I came here!")
-            coordinate_x = j * cell_size + pad
-            coordinate_y = i * cell_size + pad
+            coordinate_x = j * cell_size + pad - 15
+            coordinate_y = i * cell_size + pad - 15
             screen.blit(self.img_black_piece, (coordinate_x,coordinate_y)) 
+        
+        return True
