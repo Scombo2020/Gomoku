@@ -14,6 +14,7 @@ class Board(object):
     # Set up attributes 
     def init_game(self):
         self.board = [[0 for i in range(board_size)] for j in range(board_size)]
+        self.recent_piece_coordinate = [-1, -1]
         self.turn  = BLACK_PIECE
         self.history = []
         self.draw_board()
@@ -82,9 +83,11 @@ class Board(object):
                 coordinate_y = i * cell_size + pad - 15
                 screen.blit(self.img_white_piece, (coordinate_x,coordinate_y))
             
-            # add history, update board, and change turn
+            # add history, update board and recent piece, and change turn
             self.history.append([i, j])
             self.board[i][j] = self.turn
+            self.recent_piece_coordinate[0] = [i]
+            self.recent_piece_coordinate[0] = [j]
             self.turn = 3 - self.turn 
 
         # need to adjust with main.py in the future.
