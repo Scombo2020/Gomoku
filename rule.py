@@ -102,7 +102,7 @@ class Rule(object):
         return False
     
     def checkOmok(self):
-        #print(self.recent_piece)
+        print(self.turn)
         if self.checkHorizontalOmok():
             return True
         elif self.checkVerticalOmok():
