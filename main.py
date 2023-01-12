@@ -37,8 +37,8 @@ def run_game(surface, board, menu):
                     if menu.check_rect(event.pos, board):
                         board.init_game()
 
-        #if board.is_gameover:
-        #    return
+        if board.is_gameover:
+            return
 
         pygame.display.update()
         fps_clock.tick(60)

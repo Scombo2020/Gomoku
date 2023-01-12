@@ -1,4 +1,5 @@
 import pygame
+from rule import Rule
 from variable import *
 
 
@@ -17,11 +18,12 @@ class Board(object):
         self.recent_piece_coordinate = [-1, -1]
         self.turn  = BLACK_PIECE
         self.history = []
+        self.rule = Rule(self.board, self.recent_piece_coordinate, self.turn)
         self.draw_board()
+        self.is_gameover = False
         #self.menu.show_msg(empty)
         #self.init_board()
         #self.redos = []
-        #self.is_gameover = False
 
     def set_image_font(self):
         img_background = pygame.image.load("./image/board.png")
@@ -86,8 +88,11 @@ class Board(object):
             # add history, update board and recent piece, and change turn
             self.history.append([i, j])
             self.board[i][j] = self.turn
-            self.recent_piece_coordinate[0] = [i]
-            self.recent_piece_coordinate[0] = [j]
+            self.recent_piece_coordinate[0] = i
+            self.recent_piece_coordinate[1] = j
+            # need to call rule here
+            if self.rule.checkOmok() == True:
+                self.is_gameover = True
             self.turn = 3 - self.turn 
 
         # need to adjust with main.py in the future.
