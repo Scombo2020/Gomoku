@@ -87,6 +87,8 @@ class Board(object):
             
             # add history, update board and recent piece, and change turn
             self.history.append([i, j])
+            
+            # try to change turn by some other values from 1 and 2 that's mutable?
             self.board[i][j] = self.turn
             self.recent_piece_coordinate[0] = i
             self.recent_piece_coordinate[1] = j
