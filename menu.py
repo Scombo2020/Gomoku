@@ -29,3 +29,12 @@ class Menu(object):
     def terminate(self):
         pygame.quit()
         sys.exit()
+    
+    def winning_message(self, turn):
+        if turn == 1:
+            winning_message = "Black Wins!"
+        else:
+            winning_message = "White Wins!"
+        
+        self.make_text(self.font, winning_message, BLUE, None, window_height -30, window_width - 200)
+        

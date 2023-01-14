@@ -27,6 +27,3 @@ board_width = cell_size * (board_size - 1) + pad * 2
 
 window_width = board_width + 300
 window_height = cell_size * (board_size - 1) + pad * 2
-
-index = 1
-win = False

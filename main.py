@@ -13,7 +13,7 @@ from menu import Menu
 from variable import *
 
 
-fps_clock = pygame.time.Clock()
+clock = pygame.time.Clock()
 
 def main():
     pygame.init()
@@ -38,10 +38,12 @@ def run_game(surface, board, menu):
                         board.init_game()
 
         if board.is_gameover:
+            menu.winning_message(board.turn)
+            clock.tick(30)
             return
 
         pygame.display.update()
-        fps_clock.tick(60)
+        clock.tick(60)
 
 if __name__ == '__main__':
     main()
