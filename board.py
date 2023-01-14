@@ -18,7 +18,7 @@ class Board(object):
         self.recent_piece_coordinate = [-1, -1]
         self.turn  = BLACK_PIECE
         self.history = []
-        self.rule = Rule(self.board, self.recent_piece_coordinate, self.turn)
+        self.rule = Rule(self.board, self.recent_piece_coordinate)
         self.draw_board()
         self.is_gameover = False
         #self.menu.show_msg(empty)
@@ -93,7 +93,11 @@ class Board(object):
             self.recent_piece_coordinate[0] = i
             self.recent_piece_coordinate[1] = j
             # need to call rule here
-            if self.rule.checkOmok() == True:
+            if self.rule.checkOmok(self.turn) == True:
+                if self.turn == 1:
+                    print("BLACK WIN")
+                else:
+                    print("WHITE WIN")
                 self.is_gameover = True
             self.turn = 3 - self.turn 
 

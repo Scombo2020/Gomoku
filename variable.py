@@ -5,7 +5,6 @@ WINNING_CONDITION = 5
 EMPTY = 0
 
 #player identifiers
-turn = ['b', 'r']
 BLACK_PIECE = 1
 WHITE_PIECE = 2
 
