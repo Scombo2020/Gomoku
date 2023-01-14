@@ -30,11 +30,12 @@ class Menu(object):
         pygame.quit()
         sys.exit()
     
+    # need to remove the message after new game is started
     def winning_message(self, turn):
         if turn == 1:
             winning_message = "Black Wins!"
         else:
             winning_message = "White Wins!"
         
-        self.make_text(self.font, winning_message, BLUE, None, window_height -30, window_width - 200)
+        self.make_text(self.font, winning_message, BLUE, None, window_height -500, window_width - 200)
         
