@@ -41,9 +41,10 @@ def run_game(surface, board, menu):
             menu.winning_message(board.turn)
 
             #it's not working as I expected...
-            pygame.time.wait(5000)
+            #pygame.time.wait(5000)
             return
 
+        #should be placed here for the first game initialization.
         pygame.display.update()
         clock.tick(60)
 
