@@ -38,4 +38,19 @@ class Menu(object):
             winning_message = "White Wins!"
         
         self.make_text(self.font, winning_message, BLUE, None, window_height -500, window_width - 200)
+
+    def check_rect(self, pos, omok):
+        if self.new_rect.collidepoint(pos):
+            return True
+        elif self.show_rect.collidepoint(pos):
+            self.show_hide(omok)
+        elif self.undo_rect.collidepoint(pos):
+            omok.undo()
+        elif self.uall_rect.collidepoint(pos):
+            omok.undo_all()
+        elif self.redo_rect.collidepoint(pos):
+            omok.redo()
+        elif self.quit_rect.collidepoint(pos):
+            self.terminate()
+        return False
         
