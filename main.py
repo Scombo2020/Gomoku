@@ -38,8 +38,9 @@ def run_game(surface, board, menu):
 
         if board.is_gameover:
             menu.winning_message(board.turn)
-            #pygame.time.set_timer(menu.winning_message(board.turn) ,3, 1)
-            return
+
+            #what if start new game by clicking new game only?
+            #return
 
         #should be placed here for the first game initialization.
         pygame.display.update()
