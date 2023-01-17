@@ -92,14 +92,12 @@ class Board(object):
             self.board[i][j] = self.turn
             self.recent_piece_coordinate[0] = i
             self.recent_piece_coordinate[1] = j
-            # need to call rule here
+            
+            # check if the most recent piece ends the game.
             if self.rule.checkOmok(self.turn) == True:
-                if self.turn == 1:
-                    print("BLACK WIN")
-                else:
-                    print("WHITE WIN")
                 self.is_gameover = True
-            self.turn = 3 - self.turn 
+            else:
+                self.turn = 3 - self.turn 
 
         # need to adjust with main.py in the future.
         # set this up to prevent going to next if for now.

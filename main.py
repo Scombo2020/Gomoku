@@ -19,11 +19,10 @@ def main():
     pygame.init()
     surface = pygame.display.set_mode((window_width, board_width))
     pygame.display.set_caption("Omok game")
-
+    board = Board(surface)
+    menu = Menu(surface)
 
     while True:
-        board = Board(surface)
-        menu = Menu(surface)
         run_game(surface, board, menu)
 
 def run_game(surface, board, menu):
@@ -39,9 +38,7 @@ def run_game(surface, board, menu):
 
         if board.is_gameover:
             menu.winning_message(board.turn)
-
-            #it's not working as I expected...
-            #pygame.time.wait(5000)
+            #pygame.time.set_timer(menu.winning_message(board.turn) ,3, 1)
             return
 
         #should be placed here for the first game initialization.

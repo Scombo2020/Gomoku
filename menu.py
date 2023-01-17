@@ -32,10 +32,12 @@ class Menu(object):
     
     # need to remove the message after new game is started
     def winning_message(self, turn):
+        print(turn)
         if turn == 1:
             winning_message = "Black Wins!"
         else:
             winning_message = "White Wins!"
         
         self.make_text(self.font, winning_message, BLUE, None, window_height -500, window_width - 200)
+        #pygame.time.set_timer(self.make_text(self.font, "", BLACK, None, window_height -500, window_width - 200), 3, 1)
         
