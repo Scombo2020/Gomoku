@@ -47,10 +47,10 @@ class Board(object):
 
 
     def check_valid(self, mouse_pos):
-        # if clicked out of the board, return False 
+        # if clicked out of the board, return False, jump to the menu validation test. 
         if not pygame.Rect(0, 0, board_width, window_height).collidepoint(mouse_pos):
             print("not on the board")
-            return False, -1, -1
+            return False
 
         input_without_pad_y = mouse_pos[1] - pad # will work as i (vertical index) of the matrix
         input_without_pad_x = mouse_pos[0] - pad # will work as j (horizontal index) of the matrix
