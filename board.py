@@ -1,5 +1,6 @@
 import pygame
 from rule import Rule
+from bot import Bot
 from variable import *
 
 
@@ -95,3 +96,7 @@ class Board(object):
                 self.is_gameover = True
             else:
                 self.turn = 3 - self.turn 
+
+            # to check if bot is being implemented properly.
+            bot = Bot(self.board, self.recent_piece_coordinate)
+            bot.succ(self.turn)
