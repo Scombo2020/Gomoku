@@ -39,6 +39,15 @@ class Menu(object):
         
         self.make_text(self.font, winning_message, BLUE, None, window_height -500, window_width - 200)
 
+
+    def remove_winning_message(self):
+        print("I got you here")
+        #self.make_text(self.font, "            ", BLACK, None, window_height -500, window_width - 200)
+
+        
+        #self.surface.fill(BLACK, rect = None)
+        self.surface.fill(pygame.Color("black"), (0, 0, window_height -500, window_width - 200))
+    
     def check_rect(self, pos, omok):
         if self.new_rect.collidepoint(pos):
             return True

@@ -35,6 +35,7 @@ def run_game(surface, board, menu):
                 if not board.check_valid(event.pos):
                     if menu.check_rect(event.pos, board):
                         board.init_game()
+                        menu.remove_winning_message()
 
         if board.is_gameover:
             menu.winning_message(board.turn)
