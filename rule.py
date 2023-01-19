@@ -1,17 +1,17 @@
 import pygame
 from variable import *
 
-#rule = Rule(self.board)
-
+#a class checking if the game is done.
 class Rule(object):
 
     # get board and the coordinate of last piece
-    # is this board a reference, meaning that it will keep the latest version of board?
-    # yes, 
+    # board and recent piece will be copied by reference, so they only need to be declared here once.
+    # however, since the turn is int, which is copied by value, need to get it as a parameter everytime.
     def __init__(self, board, recent_piece):
         self.board = board
         self.recent_piece = recent_piece
 
+    # check how many pieces are aligned horizontally.
     def checkHorizontalOmok(self, turn):
         count = 0
         for j in range(self.recent_piece[1], -1, -1):
@@ -34,6 +34,7 @@ class Rule(object):
                 break
         return False
 
+    # check how many pieces are aligned vertically.
     def checkVerticalOmok(self, turn):
         count = 0
         for i in range(self.recent_piece[0], -1, -1):
@@ -56,6 +57,8 @@ class Rule(object):
                 break
         return False
 
+    # check how many pieces are aligned diagnolly.
+    # check with direction of  y = -x.
     def checkFirstDiagOmok(self, turn):
         count = 0
         for d in range(0, WINNING_CONDITION):
@@ -78,6 +81,8 @@ class Rule(object):
                 break
         return False
 
+    # check how many pieces are aligned diagnolly.
+    # check with directoin of  y = x
     def checkSecondDiagOmok(self, turn):
         count = 0
         for d in range(0, WINNING_CONDITION):

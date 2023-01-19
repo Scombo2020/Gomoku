@@ -3,28 +3,27 @@ from rule import Rule
 from variable import *
 
 
+#a class of managing what happens on the board.
 class Board(object):
     
     # Will be run once at the beginning of delcaration of the object.
-    # Set up attributes for initiating the game and run some necessary functions for getting more attributes for the same purpose.
+    # Set up attributes for initiating the game that will keep being used, regardless of starting a new game.
     def __init__(self, surface):
         self.set_image_font()
         self.surface = surface
 
-    # Will be run at the beginning of the game.
-    # Set up attributes 
+    # Will be run at the beginning of the each game.
+    # Set up attributes and draw a board on the window.
     def init_game(self):
-        self.board = [[0 for i in range(board_size)] for j in range(board_size)]
-        self.recent_piece_coordinate = [-1, -1]
-        self.turn  = BLACK_PIECE
-        self.history = []
-        self.rule = Rule(self.board, self.recent_piece_coordinate)
+        self.board = [[0 for i in range(board_size)] for j in range(board_size)] # the status of board in a form of matrix
+        self.recent_piece_coordinate = [-1, -1] # the coordinate of most recent piece
+        self.turn  = BLACK_PIECE # current player's turn
+        self.history = [] # history of pieces' coordinates by order.
+        self.rule = Rule(self.board, self.recent_piece_coordinate) # instance of rule class that checks the winning status.
+        self.is_gameover = False # a status to check whether the game is done.
         self.draw_board()
-        self.is_gameover = False
-        #self.menu.show_msg(empty)
-        #self.init_board()
-        #self.redos = []
 
+    # generates images and makes those attributes of the class.
     def set_image_font(self):
         img_background = pygame.image.load("./image/board.png")
         self.img_background = pygame.transform.scale(img_background, (board_width, window_height))
@@ -35,6 +34,7 @@ class Board(object):
 
         self.font_piece = pygame.font.SysFont("nanumgothicbold", 35)
 
+    # draw a board on the window.
     def draw_board(self):
         self.surface.blit(self.img_background, (0,0))
         for i in range(board_size):
@@ -46,10 +46,11 @@ class Board(object):
             pygame.draw.line(self.surface, BLACK, (coordinate, pad), (coordinate, window_height - pad), 2)
 
 
+    # check if the player clicks the spot clearly. if vague, prevent making unintentional move by doing nothing.
     def check_valid(self, mouse_pos):
-        # if clicked out of the board, return False, jump to the menu validation test. 
+
+        # if clicked out of the board, return False.
         if not pygame.Rect(0, 0, board_width, window_height).collidepoint(mouse_pos):
-            print("not on the board")
             return False
 
         input_without_pad_y = mouse_pos[1] - pad # will work as i (vertical index) of the matrix
@@ -61,21 +62,17 @@ class Board(object):
         input_y_rounded = round(input_index_y) 
         input_x_rounded = round(input_index_x)
         
-        # prevent vague clicks 
+        # prevent vague clicks by drawing a piece only the click is in the range close enough.
         if abs(input_index_y - input_y_rounded) < 0.2 and abs(input_index_x - input_x_rounded) < 0.2:
-            print(input_y_rounded, input_x_rounded)
-            #need to call drawing function?
-            #return True, int(input_y_rounded), int(input_x_rounded)
             return self.draw_piece(self.surface, True, int(input_y_rounded), int(input_x_rounded))
         else:
-            print("return -1")
-            return False, -1, -1
+            return False
         
     
+    # if the click is checked valid, draw a piece there, add history, change turn, update recent piece, then check if the piece finishes the game.
     def draw_piece(self, screen, valid, i, j):
 
         if valid:
-            
             if self.turn == BLACK_PIECE:
                 coordinate_x = j * cell_size + pad - 15
                 coordinate_y = i * cell_size + pad - 15
@@ -98,7 +95,3 @@ class Board(object):
                 self.is_gameover = True
             else:
                 self.turn = 3 - self.turn 
-
-        # need to adjust with main.py in the future.
-        # set this up to prevent going to next if for now.
-        return True
