@@ -46,7 +46,8 @@ class Menu(object):
 
         
         #self.surface.fill(BLACK, rect = None)
-        self.surface.fill(pygame.Color("black"), (0, 0, window_height -500, window_width - 200))
+        #(left, top, width, height)
+        self.surface.fill(BLACK, (window_width - 200, window_height - 500, 200, 30))
     
     def check_rect(self, pos, omok):
         if self.new_rect.collidepoint(pos):

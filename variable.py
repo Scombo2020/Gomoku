@@ -23,7 +23,11 @@ pad = 30
 cell_size = 40
 piece_size = 30
 
+
+#with board_size = 15, 620
 board_width = cell_size * (board_size - 1) + pad * 2
 
+#with board_size = 15, 920
 window_width = board_width + 300
-window_height = cell_size * (board_size - 1) + pad * 2
+#with board_size = 15, 620
+window_height = cell_size * (board_size - 1) + pad * 2 
