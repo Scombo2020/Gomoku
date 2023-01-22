@@ -1,5 +1,6 @@
 import pygame
 from variable import *
+import numpy as np
 
 #a class checking if the game is done.
 class Rule(object):

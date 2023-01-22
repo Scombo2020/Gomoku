@@ -2,6 +2,7 @@ import pygame
 from rule import Rule
 from bot import Bot
 from variable import *
+import numpy as np
 
 
 #a class of managing what happens on the board.
