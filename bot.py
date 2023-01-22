@@ -1,5 +1,6 @@
 from variable import *
 import copy
+import numpy as np
 
 class Bot(object):
     
