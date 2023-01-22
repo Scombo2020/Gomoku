@@ -5,7 +5,7 @@ import numpy as np
 class Bot(object):
     
     def __init__(self, board, recent_piece):
-        self.board = board
+        self.board = np.array(board)
         self.recent_piece = recent_piece
 
     # collect the possible status
