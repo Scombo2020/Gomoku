@@ -22,13 +22,15 @@ class Bot(object):
                     print(succ)
                     succ_list.append(succ)
 
+    # need to define which data to receive as a parameter.
+    # maybe succ list?
+    # then, think about how to determine the heuristic.
+    # don't care about complicated rule for now.
     def heuristic_game_value(self, state):
 
-        #Only proceed if it is not a terminal state.
-        if self.game_value(state) == 0:
-            my_best_score = 0
-            opp_best_score = 0
-            for row in range(5):
+        my_best_score = 0
+        opp_best_score = 0
+        for row in range(len(self.board)):
                 for col in range(5):
                     if state[row][col] == self.my_piece:
 
