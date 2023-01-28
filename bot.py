@@ -38,6 +38,8 @@ class Bot(object):
             for row in range(board_size):
                 for col in range(board_size):
                     if succ[row][col] == turn: 
+                        
+
 
                         
                         #start counting here
