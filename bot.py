@@ -39,6 +39,7 @@ class Bot(object):
                 for col in range(board_size):
                     if succ[row][col] == turn: 
                         
+                        
 
 
                         
