@@ -42,6 +42,8 @@ class Bot(object):
                         
 
 
+
+
                         
                         #start counting here
                 
